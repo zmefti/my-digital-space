@@ -157,25 +157,6 @@
         .mobile-menu a{font-family:'Playfair Display',serif;font-size:1.8rem;text-decoration:none;color:var(--text-primary);transition:var(--transition)}
         .mobile-menu a:hover{color:var(--accent)}
 
-        /* MUSIC WIDGET */
-        .music-widget{position:fixed;bottom:28px;right:28px;z-index:500;background:var(--bg-card);backdrop-filter:blur(28px);border:1px solid var(--border-light);border-radius:var(--radius);padding:16px 20px;box-shadow:var(--shadow-medium);max-width:220px;transition:var(--transition);animation:wGlow 4s ease-in-out infinite}
-        .music-widget.collapsed{padding:12px;border-radius:50%;max-width:46px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-        .music-widget.collapsed .music-content,.music-widget.collapsed .music-header{display:none}
-        .music-widget.collapsed .music-icon{display:flex}
-        @keyframes wGlow{0%,100%{box-shadow:var(--shadow-medium)}50%{box-shadow:var(--shadow-medium),var(--shadow-glow)}}
-        .music-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-        .music-label{font-size:.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);font-weight:500}
-        .music-min{background:none;border:none;color:var(--text-muted);cursor:none;font-size:.6rem}
-        .music-content{display:flex;align-items:center;gap:12px}
-        .equalizer{display:flex;align-items:flex-end;gap:2px;height:18px}
-        .eq-bar{width:3px;border-radius:2px;background:var(--accent);animation:eq ease-in-out infinite}
-        .eq-bar:nth-child(1){height:8px;animation-duration:.8s}.eq-bar:nth-child(2){height:14px;animation-duration:.6s;animation-delay:.1s}.eq-bar:nth-child(3){height:10px;animation-duration:.9s;animation-delay:.2s}.eq-bar:nth-child(4){height:16px;animation-duration:.7s;animation-delay:.05s}
-        @keyframes eq{0%,100%{height:4px}50%{height:18px}}
-        .music-info{flex:1;min-width:0}
-        .music-song{font-size:.82rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .music-artist{font-size:.68rem;color:var(--text-muted)}
-        .music-icon{display:none;font-size:1rem;color:var(--accent);align-items:center;justify-content:center}
-
         /* FILM STRIP */
         .film-strip-section{padding:40px 0;position:relative;z-index:2;overflow:hidden}
         .film-strip-wrapper{position:relative;padding:20px 0}
@@ -473,15 +454,6 @@
         <a href="#gallery" onclick="closeMobile()">Gallery</a>
         <a href="#favorites" onclick="closeMobile()">Favorites</a>
         <a href="#contact" onclick="closeMobile()">Contact</a>
-    </div>
-
-    <div class="music-widget" id="musicWidget" onclick="toggleMusic()">
-        <div class="music-header"><span class="music-label">♫ Now Playing</span><button class="music-min"><i class="fas fa-chevron-down"></i></button></div>
-        <div class="music-content">
-            <div class="equalizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
-            <div class="music-info"><div class="music-song bangla">মিন্নতা – Shamiul Shezan</div><div class="music-artist">Bangla Lo-fi</div></div>
-        </div>
-        <div class="music-icon">♫</div>
     </div>
 
     <div class="easter-overlay" id="easterOverlay" onclick="closeEasterEgg()"></div>
@@ -916,8 +888,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
 
         function randomThought(){const t=document.getElementById('thoughtText');t.style.opacity=0;t.style.transform='translateY(12px)';setTimeout(()=>{t.textContent=`"${THOUGHTS[~~(Math.random()*THOUGHTS.length)]}"`;t.style.opacity=1;t.style.transform='translateY(0)'},300)}
-
-        function toggleMusic(){document.getElementById('musicWidget').classList.toggle('collapsed')}
 
         let eC=0;
         document.getElementById('heroProfile').addEventListener('click',()=>{if(++eC>=5){document.getElementById('easterEgg').classList.add('active');document.getElementById('easterOverlay').classList.add('active');eC=0}});
